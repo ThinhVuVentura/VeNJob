@@ -11,6 +11,7 @@ gem 'carrierwave', '~> 1.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 gem 'bootstrap', '~> 4.1.3'
+gem 'kaminari'
 gem 'jquery-rails'
 gem 'simple_form'
 gem "autoprefixer-rails"
