@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark item-center">
+  <form class="form-inline col-xl-10 col-lg-8 col-md-6">
+  	<div class="row col-12">
+  		<div class="col-2 pt-1 ">
+  			<%= link_to root_path do %>
+  				<%= image_tag "/images/logo.png", class: "logo-page"%>
+  			<% end %>
+  		</div>
+	    <div class="search-navbar input-group col-9">
+	      <input type="text" class="form-control input-search" placeholder="search-jobs">
+	      <button class="btn btn-search-navbar" href="#">Search</button>
+	    </div>
+		</div>
+  </form>
+  <div class="col-xl-2 col-lg-4 col-md-6">
+  	<ul class="nav-item dropdown m-0">
+  		<% if current_user.present? %>
+	      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+	        <%= current_user.name %>
+	      </a>
+	      <div class="dropdown-menu">
+	        <a class="dropdown-item" href="#">profile</a>
+	        <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item') %>
+	      </div>
+	     <% else %>
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+	        Menu
+	      </a>
+	      <div class="dropdown-menu">
+	        <%= link_to('Login', new_user_session_path , class: 'dropdown-item')  %>
+	        <%= link_to('Sign up', new_user_registration_path , class: 'dropdown-item')  %>
+	      </div>
+      <% end %>
+    </ul>
+  </div>
+</nav>

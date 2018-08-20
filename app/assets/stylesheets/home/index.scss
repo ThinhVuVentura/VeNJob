@@ -1,0 +1,39 @@
+.home-page{
+	max-width: 1280px;
+	margin: auto;
+	.item-jobs{
+		height: 40vh;
+		padding: 15px 10px;
+		.info-item-jobs{
+			width:100%;
+			height: 100%;
+			border:1px solid rgba(0,0,0,0.1);
+			position: relative;
+			.overlay {
+			  position: absolute;
+			  top: 0;
+			  bottom: 0;
+			  left: 0;
+			  right: 0;
+			  height: 100%;
+			  width: 100%;
+			  opacity: 0;
+			  transition: .5s ease;
+			  background-color: rgba(0,0,0,0.7);
+			  text-align: center;
+			  padding-top: 80px;
+			}
+			.text {
+				width: 100%;
+			  color: white;
+			  font-size: 20px;
+			}
+		}
+		.info-item-jobs:hover .overlay {
+	  opacity: 1;
+		}
+		.btn-group{
+			margin-top: 40px;
+		}
+	}
+}
