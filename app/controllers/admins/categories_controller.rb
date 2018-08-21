@@ -3,11 +3,11 @@ class Admins::CategoriesController < Admins::BaseController
 	before_action :set_category , only: [:show, :destroy, :edit, :update]
 
 	def index
-		@categories = Category.all
+		@categories = Category.all.page(params[:page]).per(20)
 	end
 
 	def show
-		@jobs = @category.jobs
+		@jobs = @category.jobs.page(params[:page]).per(10)
 	end
 
 	def create

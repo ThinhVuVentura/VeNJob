@@ -3,7 +3,7 @@ class Admins::JobsController < Admins::BaseController
 	before_action :set_jobs, only:[:show, :edit, :update, :destroy]
 
 	def index
-		@jobs = Job.all
+		@jobs = Job.all.page(params[:page]).per(20)
 	end
 
 	def create

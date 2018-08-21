@@ -12,6 +12,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'puma', '~> 3.11'
 gem 'bootstrap', '~> 4.1.3'
 gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
 gem 'jquery-rails'
 gem 'simple_form'
 gem "autoprefixer-rails"
