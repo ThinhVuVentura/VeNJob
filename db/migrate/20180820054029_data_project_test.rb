@@ -2,7 +2,7 @@ class DataProjectTest < ActiveRecord::Migration[5.2]
   def change
   	create_table :categories do |f|
   		f.string :title
-  		f.integer :position
+  		f.integer :position, default: 1000
   		f.timestamps
   	end
 
