@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jobs</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'user', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if check_active_controller(["sessions", "registrations", "passwords","confirmations"]) %>
+      <div class="devise col-md-12">
+        <div class="row">
+          <%= render 'users/shared/nav_left'%>
+          <div class="col-md-12 col-lg-9 bg-white">
+            <%= render 'users/shared/heard'%>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
+  </body>
+</html>

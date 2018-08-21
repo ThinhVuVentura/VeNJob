@@ -1,23 +1,24 @@
-<h2>Sign up</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true ,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
+<div class="form-devise col-md-8 col-lg-7 sign_up sign_in", style="padding-top:10px;">
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <p class="title-form">Sign up</p>
+    <br>
+    <div class="form-group">
+      <%= f.input :name, label: "User name", input_html:{ class: 'form-control'} %>
+    </div>
+    <div class="form-group">
+      <%= f.input :phone, label: "Phone", input_html:{ class: 'form-control'} %>
+    </div>
+    <div class="form-group">
+      <%= f.input :address, label: "Address", input_html:{ class: 'form-control'} %>
+    </div>
+    <div class="form-group">
+      <%= f.input :email, autofocus: true, autocomplete: "email",placeholder:'This will also be your email address', label: "email address", input_html:{ class: 'form-control'} %>
+    </div>
+    <div class="form-group">
+      <%= f.input :password,label: "Password"%>
+    </div>
+    <div class="form-acction text-center">
+      <%= f.submit 'Sign up', class: 'btn-devise'%>
+    </div>
+  <% end %>
+</div>

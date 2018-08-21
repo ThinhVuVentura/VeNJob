@@ -1,24 +1,19 @@
-<h2>Change your password</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <%= f.input :reset_password_token, as: :hidden %>
-  <%= f.full_error :reset_password_token %>
-
-  <div class="form-inputs">
-    <%= f.input :password,
-                label: "New password",
-                required: true,
-                autofocus: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+<div class=" form-devise col-md-8 col-lg-7 col-xl-6">
+  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <p class="title-form">Change your password</p>
+    <%= render 'layouts/messages' %>
+    <br>
+    <%= f.hidden_field :reset_password_token %>
+    <div class="form-group">
+      <label >New password</label>
+      <%= f.input :password, autofocus: true, autocomplete: "off", label:false, input_html: {class: 'form-control'} %>
+    </div>
+    <div class="form-group">
+      <label >Confirm new password</label>
+      <%= f.input :password_confirmation, autocomplete: "off", label:false, input_html: {class: 'form-control'} %>
+    </div>
+    <div class="form-acction text-center">
+      <%= f.submit 'Change my password',class: "btn-devise"%>
+    </div>
+  <% end %>
+</div>

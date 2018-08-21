@@ -1,18 +1,23 @@
-<h2>Log in</h2>
+<div class=" form-devise col-md-8 col-lg-6 sign_in">
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <p class="title-form">Sign in</p>
+    <%= render 'layouts/messages' %>
+    <br>
+    <div class="form-group">
+      <label >Email address</label>
+      <%= f.input :email,autofocus: true, autocomplete: "email",label:false, input_html: {class: 'form-control'}, id:'email-address'%>
+      <span id='result'> </span>
+    </div>
+    <label>Password</label>
+    <a href="<%= new_user_password_path %>" style="float:right; color: rgba(0, 0, 0, 0.6); ">Forgot password? </a>
+    <br>
+      <%= f.input :password,label: false%>
+    </div>
+    <div class="form-acction text-center">
+      <%= f.submit 'Sign in',class: "btn-devise"%>
+    </div>
+  <% end %>
+</div>
+<script type="text/javascript">
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
+</script>

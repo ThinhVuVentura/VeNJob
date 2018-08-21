@@ -1,0 +1,13 @@
+<div class="row header-devise">
+	<div class="pull-right items-header">
+		<% if check_active_controller(["registrations"]) %>
+			<span>Already have an account?&nbsp;&nbsp;</span>
+			<%= link_to "Login", new_user_session_path, class: "btn btn-header-devise" %>
+		<% elsif check_active_controller(["sessions"])%>
+			<span >Don't have an account?&nbsp;&nbsp;</span>
+			<%= link_to "Sign Up", new_user_registration_path, class: "btn btn-header-devise" %>
+		<% else %>
+			<%= link_to "Back to Login", new_user_session_path, class: "btn btn-header-devise" %>
+		<% end %>
+	</div>
+</div>
