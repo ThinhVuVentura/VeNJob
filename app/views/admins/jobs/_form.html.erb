@@ -1,0 +1,8 @@
+<%= simple_form_for([:admins, @job]) do |f|%>
+	<%= f.input :name , label: "Title job"%>
+	<%= f.input :price , label: "Salary"%>
+	<%= f.input :description %>
+	<%= f.input :photo %>
+	<%= f.input :category_id,  collection: Category.all.map { |c| [c.title, c.id]}, input_html: {class: "select2"} ,require:'true'%>
+	<%= f.submit "Save", class: 'btn btn-devise' %>
+<% end %>

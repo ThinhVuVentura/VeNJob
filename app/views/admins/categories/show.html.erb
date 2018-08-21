@@ -1,0 +1,38 @@
+<h2> Infomation Category </h2>
+<br>
+<h5><b>Title:</b> <i><%= @category.title%></i></h5>
+<h5><b>Position:</b> <i><%= @category.position%></i></h5>
+<h5><b>Number Jobs:</b> <i><%= @category.jobs.count%></i></h5>
+<h5><b>Created at:</b> <i><%= @category.created_at.to_date%></i></h5>
+<h5><b>Update at:</b> <i><%= @category.updated_at.to_date%></i></h5>
+<br>
+<hr>
+<br>
+<h2>Table Jobs of <%= @category.title%></h2>
+<br>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Image</th>
+      <th>Title Job</th>
+      <th>salary</th>
+      <th> Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @jobs.each do |f|%>
+    <tr>
+      <td><%= f.id %></td>
+      <td><%= image_tag "#{f.photo}" if f.photo.present? %></td>
+      <td><%= f.name %></td>
+      <td><%= f.price %></td>
+      <td>
+        <%= link_to("<i class='fa fa-pencil-alt'></i>".html_safe, edit_admins_job_path(f.id), class: "btn btn-circle btn-default btn-large") %>
+        <%= link_to("<i class='fa fa-trash-alt'></i>".html_safe, admins_job_path(f.id), class: "btn btn-circle btn-danger btn-large", data: {:confirm => 'Are you sure?'}, :method => :delete) %>
+        <%= link_to("<i class='fa fa-eye'></i>".html_safe, admins_job_path(f.id), class: "btn btn-circle btn-primary btn-large") %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

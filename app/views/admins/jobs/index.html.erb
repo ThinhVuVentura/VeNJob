@@ -1,0 +1,30 @@
+<h2>Table Jobs</h2>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Image</th>
+      <th>Title Job</th>
+      <th>Category</th>
+      <th>salary</th>
+      <th> Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @jobs.each do |f|%>
+    <tr>
+      <td><%= f.id %></td>
+      <td><%= image_tag "#{f.photo}" if f.photo.present? %></td>
+      <td><%= f.name %></td>
+      <td><%= f.category.title %></td>
+      <td><%= f.price %></td>
+      <td>
+        <%= link_to("<i class='fa fa-pencil-alt'></i>".html_safe, edit_admins_job_path(f.id), class: "btn btn-circle btn-default btn-large") %>
+        <%= link_to("<i class='fa fa-trash-alt'></i>".html_safe, admins_job_path(f.id), class: "btn btn-circle btn-danger btn-large", data: {:confirm => 'Are you sure?'}, :method => :delete) %>
+        <%= link_to("<i class='fa fa-eye'></i>".html_safe, admins_job_path(f.id), class: "btn btn-circle btn-primary btn-large") %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
