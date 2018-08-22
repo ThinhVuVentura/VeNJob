@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+
+
+get "search", to: "home#search"
+
+
+
+
   devise_for :admins, controllers: {
         sessions: 'admins/sessions'
       }
@@ -12,6 +19,7 @@ Rails.application.routes.draw do
       }
 #----------------User------------
 
+  resources :users, only:[:show, :edit, :update]
  	resources :home, only:[:index]
  	resources :jobs, only:[:show]
 
