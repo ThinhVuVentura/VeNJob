@@ -20,6 +20,7 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'devise'
 gem "select2-rails"
 gem 'font-awesome-sass', '~> 5.2.0'
+gem 'acts_as_favoritor'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

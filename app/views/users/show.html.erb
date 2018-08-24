@@ -1,0 +1,30 @@
+<div class= "container-fluid">
+	<div class="home-page">
+		<br>
+		<h3> <%= @jobs.count%> jobs favorited</h3>
+		<br>
+		<div class="row ">
+			<% @jobs.each do |f| %>
+				<div class="col-lg-4 col-md-6 col-12 item-jobs">
+					<div class="info-item-jobs">
+						<%= image_tag "#{f&.photo}", class: "image-photo-jobs"%>
+					  <div class="overlay">
+					    <div class="text">Title: <%= f.name %></div>
+					    <div class="text">Salary: <%= f.price %></div>
+					    <div class="text">Category: <%= f.category.title %></div>
+						   <div class="btn-group">
+						   	<% if  current_user.favorited? f%>
+						   		<%= link_to "Unfavorite",favorite_user_user_path(current_user.id, f),html: { method: :put }, class: "btn btn-apply-item"%>
+						   	<% else %>
+						   		<%= link_to "Favorite", favorite_user_user_path(current_user.id,f),html: { method: :put }, class: "btn btn-apply-item"%>
+						   	<% end %>
+						    	<%= link_to "Detail", job_path(f), class: "btn btn-show-item"%>
+						  </div>
+					  </div>
+					</div>
+				</div>
+			<% end %>
+			<br>
+		</div>
+	</div>
+</div>

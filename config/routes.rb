@@ -16,10 +16,17 @@ get "search", to: "home#search"
         registrations: 'users/registrations',
         passwords: 'users/passwords',
         confirmations: 'users/confirmations'
+
       }
 #----------------User------------
 
-  resources :users, only:[:show, :edit, :update]
+  resources :users, only:[:show, :edit, :update] do
+    member do
+      put "update_password"
+      get "favorite_user"
+    end
+  end
+  resources :categories, only:[:show]
  	resources :home, only:[:index]
  	resources :jobs, only:[:show]
 

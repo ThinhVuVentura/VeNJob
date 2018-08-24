@@ -36,4 +36,26 @@
 			margin-top: 40px;
 		}
 	}
+	.item-category{
+
+		color: black;
+		padding: 5px 30px;
+		margin-left: 10px;
+		text-align: center;
+		border: 1px solid rgba(0,0,0,0.5);
+		background: rgba(0,0,0,0.3);
+		border-radius: 5px;
+
+	}
+	.active-category{
+			background: white;
+		}
+	.item-category:hover{
+		background: white;
+	}
+	.category{
+		a{
+			text-decoration: none;
+		}
+	}
 }

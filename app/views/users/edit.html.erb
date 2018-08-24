@@ -1,0 +1,25 @@
+<div class="col-4 offset-4 mt-5	">
+	<h2> Profile </h2>
+	<%= simple_form_for(current_user) do |f| %>
+		<%= f.input :name %>
+		<%= f.input :phone %>
+		<%= f.input :address %>
+		<%= f.submit "Update profile",class: 'btn btn-devise' %>
+	<% end %>
+	<hr>
+	<h2> Change password</h2>
+	<%= simple_form_for(current_user,url: update_password_user_path, html: { method: :put }) do |f| %>
+	  <div class="form-group">
+	    <%= f.input :old_password%>
+	  </div>
+	  <div class="form-group">
+	    <%= f.input :password%>
+	  </div>
+	  <div class="form-group">
+	    <%= f.input :password_confirmation%>
+	  </div>
+	  <div class="form-group">
+	  	<%= f.submit "Chang password",class: 'btn btn-devise' %>
+	  </div>
+	<% end %>
+</div>

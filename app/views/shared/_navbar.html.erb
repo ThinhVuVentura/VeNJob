@@ -19,7 +19,8 @@
 	        <%= current_user.name %>
 	      </a>
 	      <div class="dropdown-menu">
-	        <a class="dropdown-item" href="#">profile</a>
+	        <%= link_to "Profile", edit_user_path(current_user.id) , class: "dropdown-item"%>
+	        <%= link_to "favorited", user_path(current_user.id) , class: "dropdown-item"%>
 	        <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item') %>
 	      </div>
 	     <% else %>

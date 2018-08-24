@@ -6,12 +6,17 @@
 			<br>
 			<div class="category">
 				<div class = "row">
-
 					<% @categories.each do |a|%>
 						<%= link_to category_path(a) do %>
-							<div class ="item-category">
-								<%= a.title%>
-							</div>
+							<% if @category == a%>
+								<div class ="item-category active-category">
+									<%= a.title%>
+								</div>
+							<% else %>
+								<div class ="item-category">
+									<%= a.title%>
+								</div>
+							<% end %>
 						<% end %>
 					<% end %>
 				</div>
@@ -32,7 +37,7 @@
 							   	<% else %>
 							   		<%= link_to "Favorite", favorite_user_user_path(current_user.id,f),html: { method: :put }, class: "btn btn-apply-item"%>
 							   	<% end %>
-							    	<%= link_to "Detail", job_path(f), class: "btn btn-show-item"%>
+							   		<%= link_to "Detail", job_path(f), class: "btn btn-show-item"%>
 							  </div>
 						  </div>
 						</div>
