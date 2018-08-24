@@ -1,0 +1,27 @@
+<div class="col-4 offset-4 mt-5	">
+		<p> Apply <%= @job.name%> </p>
+		<p>Name: <%= @user.name %></p>
+		<p>Email: <%= @user.email%></p>
+
+		<%= simple_form_for(@user,url: update_cv_user_path, html: { method: :put }) do |f| %>
+	  <div class="form-group">
+	    <%= f.input :cv, label: "upload cv:"%>
+	  </div>
+	  <div class="form-group">
+	  	<button class='btn btn-devise' onclick="IsEmpty();" type="button">send cv for company </button>
+	  </div>
+	<% end %>
+</div>
+
+<script language="Javascript">
+  function IsEmpty(){
+      if($("#user_cv").val() == "")
+      {
+          alert("cv can be blank!");
+      }
+      else{
+      	$('form').submit();
+      }
+      return;
+  }
+</script>

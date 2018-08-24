@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :name, :phone, :address,  presence: true
   has_and_belongs_to_many :jobs
+  mount_uploader :cv, CvUploader
 end

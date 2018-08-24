@@ -25,6 +25,8 @@ get "search", to: "home#search"
       put "update_password"
       get "favorite_user"
       get "apply_job"
+      get "confimation_job"
+      put "update_cv"
     end
   end
   resources :categories, only:[:show]
@@ -42,6 +44,6 @@ get "search", to: "home#search"
  	end
 
 #--------------------------------
-
+  get "tks_page" , to: "static#tks_page"
  	root "home#index"
 end

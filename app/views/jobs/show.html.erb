@@ -14,6 +14,11 @@
 		<% else %>
 			<%= link_to "Apply", apply_job_user_path(@job,@job), class: "btn btn-devise" %>
 		<% end %>
+		<% if  current_user&.favorited? @job%>
+   		<%= link_to "Unfavorite",favorite_user_user_path(@job, @job),html: { method: :put }, class: "btn btn-devise"%>
+   	<% else %>
+   		<%= link_to "Favorite", favorite_user_user_path(@job,@job),html: { method: :put }, class: "btn btn-devise"%>
+   	<% end %>
 		</div>
 	</div>
 </div>

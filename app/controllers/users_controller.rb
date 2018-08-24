@@ -25,11 +25,28 @@ class UsersController < ApplicationController
 		arr_job_ids = current_user.job_ids
 		if arr_job_ids.include? params[:format].to_i
 			arr_job_ids.delete(params[:format].to_i)
+			current_user.update(job_ids: arr_job_ids)
 		else
 			arr_job_ids.push(params[:format].to_i)
+			current_user.update(job_ids: arr_job_ids)
+			ApplyJobMailer.send_mail_add_cv(current_user,Job.find(params[:format].to_i)).deliver_now
 		end
-		current_user.update(job_ids: arr_job_ids)
+
 		redirect_to request.referrer
+	end
+
+	def update_cv
+		@user = User.find(params[:id])
+		if @user.update(param_cv)
+			redirect_to tks_page_path
+		else
+			render :confimation_job
+		end
+	end
+
+	def confimation_job
+		@job = Job.find(params[:format].to_i)
+		@user = User.find(params[:id])
 	end
 
 	def show
@@ -54,6 +71,10 @@ class UsersController < ApplicationController
   	end
     def param_password
       params.require(:user).permit(:password,:password_confirmation)
+    end
+
+    def param_cv
+    	params.require(:user).permit(:cv)
     end
 
 end

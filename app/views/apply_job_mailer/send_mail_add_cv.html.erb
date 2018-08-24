@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h5>Hi <%= @user.email%>,</h5>
+    <p>
+      You have apply job.<br>
+    </p>
+    <p> please, give for me new CV</p>
+    <p>
+      link upload CV: <%= link_to "send cv", confimation_job_user_url(@user,@job)%>
+    </p>
+    <p>Thanks you!</p>
+  </body>
+</html>
