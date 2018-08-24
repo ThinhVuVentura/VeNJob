@@ -24,6 +24,7 @@ get "search", to: "home#search"
     member do
       put "update_password"
       get "favorite_user"
+      get "apply_job"
     end
   end
   resources :categories, only:[:show]

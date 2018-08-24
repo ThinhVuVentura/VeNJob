@@ -4,5 +4,6 @@ class User < ApplicationRecord
   acts_as_favoritor
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  validates :name, :phone, :address,  presence: true
   has_and_belongs_to_many :jobs
 end

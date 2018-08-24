@@ -32,10 +32,10 @@
 						    <div class="text">Salary: <%= f.price %></div>
 						    <div class="text">Category: <%= f.category.title %></div>
 							   <div class="btn-group">
-							   	<% if  current_user.favorited? f%>
-							   		<%= link_to "Unfavorite",favorite_user_user_path(current_user.id, f),html: { method: :put }, class: "btn btn-apply-item"%>
+							   	<% if  current_user&.favorited? f%>
+							   		<%= link_to "Unfavorite",favorite_user_user_path(f, f),html: { method: :put }, class: "btn btn-apply-item"%>
 							   	<% else %>
-							   		<%= link_to "Favorite", favorite_user_user_path(current_user.id,f),html: { method: :put }, class: "btn btn-apply-item"%>
+							   		<%= link_to "Favorite", favorite_user_user_path(f,f),html: { method: :put }, class: "btn btn-apply-item"%>
 							   	<% end %>
 							   		<%= link_to "Detail", job_path(f), class: "btn btn-show-item"%>
 							  </div>

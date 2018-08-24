@@ -19,7 +19,17 @@ class UsersController < ApplicationController
 			current_user.favorite job
 			redirect_to request.referrer
 		end
+	end
 
+	def apply_job
+		arr_job_ids = current_user.job_ids
+		if arr_job_ids.include? params[:format].to_i
+			arr_job_ids.delete(params[:format].to_i)
+		else
+			arr_job_ids.push(params[:format].to_i)
+		end
+		current_user.update(job_ids: arr_job_ids)
+		redirect_to request.referrer
 	end
 
 	def show

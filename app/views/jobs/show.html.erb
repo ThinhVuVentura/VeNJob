@@ -1,0 +1,19 @@
+<div class="container mt-4">
+	<div class="details-job">
+		<h2> Infomation Job </h2>
+		<hr>
+		<h4><i><%= @job.name%></i></h4>
+		<br>
+		<h5><b>Salary:</b> <i><%= @job.price%> $</i></h5>
+		<h5><b>Category:</b> <i><%= @job.category.title%></i></h5>
+		<h5><b>Description:</b> <i><%= @job.description%></i></h5>
+		<h5><b>Updatedat:</b> <i><%= @job.updated_at.to_date%></i></h5>
+		<h5><b>Created at:</b> <i><%= @job.created_at.to_date%></i></h5>
+		<% if @users.include? current_user %>
+			<%= link_to "Unapply", apply_job_user_path(@job, @job), class: "btn btn-devise" %>
+		<% else %>
+			<%= link_to "Apply", apply_job_user_path(@job,@job), class: "btn btn-devise" %>
+		<% end %>
+		</div>
+	</div>
+</div>
