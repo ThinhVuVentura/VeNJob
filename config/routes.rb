@@ -39,6 +39,9 @@ get "search", to: "home#search"
 
  	namespace :admins do
  		resources :jobs
+    resources :users do
+      collection {post :import }
+    end
  		resources :categories
     root "jobs#index"
  	end
