@@ -22,6 +22,8 @@ gem "select2-rails"
 gem 'font-awesome-sass', '~> 5.2.0'
 gem "letter_opener", :group => :development
 gem 'acts_as_favoritor'
+gem 'sunspot_rails'
+gem 'sunspot_solr'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

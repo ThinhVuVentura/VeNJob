@@ -12,6 +12,26 @@
 						</div>
 					<% end %>
 				</div>
+				<% @search.each_hit_with_result do |hit, job| %>
+				  <div class="col-lg-4 col-md-6 col-12 item-jobs">
+						<div class="info-item-jobs">
+							<%= image_tag "#{job&.photo}", class: "image-photo-jobs"%>
+						  <div class="overlay">
+						    <div class="text">Title: <%= job.name %></div>
+						    <div class="text">Salary: <%= job.price %></div>
+						    <div class="text">Category: <%= job.category.title %></div>
+							   <div class="btn-group">
+							   	<% if  current_user&.favorited? job%>
+							   		<%= link_to "Unfavorite",favorite_user_user_path(job,job),html: { method: :put }, class: "btn btn-apply-item"%>
+							   	<% else %>
+							   		<%= link_to "Favorite", favorite_user_user_path(job,job),html: { method: :put }, class: "btn btn-apply-item"%>
+							   	<% end %>
+							   		<%= link_to "Detail", job_path(job), class: "btn btn-show-item"%>
+							  </div>
+						  </div>
+						</div>
+					</div>
+				<% end %>
 			</div>
 		</div>
 	</div>

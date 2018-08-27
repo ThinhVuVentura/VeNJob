@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
 
 
-
-get "search", to: "home#search"
-
-
-
-
   devise_for :admins, controllers: {
         sessions: 'admins/sessions'
       }

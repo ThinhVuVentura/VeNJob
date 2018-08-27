@@ -7,8 +7,12 @@
   			<% end %>
   		</div>
 	    <div class="search-navbar input-group col-9">
-	      <input type="text" class="form-control input-search" placeholder="search-jobs">
-	      <button class="btn btn-search-navbar" href="#">Search</button>
+	    	<% if check_active_controller(["home"])%>
+		    	<%= form_for root_path, method: :get do |f| %>
+						<%= text_field_tag :q, params[:q], class: "form-control input-search" %>
+						<%= submit_tag "Search", name: nil, class: "btn btn-search-navbar"%>
+					<% end %>
+				<% end %>
 	    </div>
 		</div>
   </form>
