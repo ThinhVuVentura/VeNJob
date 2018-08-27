@@ -1,0 +1,35 @@
+<div class="col-12 mt-4">
+  <div class="row">
+    <div class="col-6 offset-2">
+      <h2>History Apply</h2>
+    </div>
+  </div>
+</div>
+<br>
+<table class="table table-hover col-8 offset-2">
+  <thead class="">
+    <tr>
+      <th>ID</th>
+      <th>Image</th>
+      <th>Title Job</th>
+      <th>Category</th>
+      <th>Salary</th>
+      <th>Apply at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @jobs.each do |f|%>
+    <tr>
+      <td><%= f.id %></td>
+      <td><%= image_tag "#{f.photo}" if f.photo.present? %></td>
+      <td><%= f.name %></td>
+      <td><%= f.category.title %></td>
+      <td><%= f.price %></td>
+      <td>
+          <%= @jobs_users.find_by(job_id: f.id).created_at.to_date%>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @jobs, theme: 'twitter-bootstrap-4' %>

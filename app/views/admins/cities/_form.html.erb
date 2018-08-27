@@ -1,0 +1,5 @@
+<%= simple_form_for([:admins, @city]) do |f|%>
+	<%= f.input :name %>
+	<%= f.input :city_list,  collection: City.city_lists.keys.map {|role| [role.titleize,role]}%>
+	<%= f.submit "Save", class: 'btn btn-devise' %>
+<% end %>

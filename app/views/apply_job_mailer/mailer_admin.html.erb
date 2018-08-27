@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h5>Hi Admin,</h5>
+    <p>
+      <%= @user.email %> apply job.<br>
+    </p>
+    <p>Job id: <%= @job.id %></p>
+    <p>Job name: <%= @job.name %></p>
+    <p>
+      link download CV: <%= link_to "Download cv", @user.cv.url %>
+    </p>
+    <p>Thanks you!</p>
+  </body>
+</html>

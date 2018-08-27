@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 2018_08_24_065634) do
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.integer "position", default: 1000
+    t.bigint "city_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_categories_on_city_id"
+  end
+
+  create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.integer "city_list", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -62,6 +71,8 @@ ActiveRecord::Schema.define(version: 2018_08_24_065634) do
   create_table "jobs_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "job_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["job_id"], name: "index_jobs_users_on_job_id"
     t.index ["user_id"], name: "index_jobs_users_on_user_id"
   end

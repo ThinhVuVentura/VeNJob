@@ -20,7 +20,8 @@
 	      </a>
 	      <div class="dropdown-menu">
 	        <%= link_to "Profile", edit_user_path(current_user.id) , class: "dropdown-item"%>
-	        <%= link_to "favorited", user_path(current_user.id) , class: "dropdown-item"%>
+	        <%= link_to "History", history_apply_user_path(current_user.id) , class: "dropdown-item"%>
+	        <%= link_to "Favorited", user_path(current_user.id) , class: "dropdown-item"%>
 	        <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item') %>
 	      </div>
 	     <% else %>

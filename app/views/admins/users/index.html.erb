@@ -1,4 +1,48 @@
-<%= form_tag import_admins_users_path, method: :post, multipart: true do %>
-    <%= file_field_tag :file %>
-    <%= submit_tag "Import CSV" %>
-  <% end %>
+<div class="col-12">
+  <div class="row">
+    <div class="col-3">
+      <h2>Table User</h2>
+    </div>
+    <div class="col-6">
+			<%= form_tag import_admins_users_path, method: :post, multipart: true do %>
+			  <%= file_field_tag :file %>
+			  <%= submit_tag "Import CSV" %>
+			<% end %>
+		</div>
+    <div class="col-3 text-right">
+      <%= link_to "Create new", new_admins_user_path, class: "btn btn-devise"%>
+    </div>
+  </div>
+</div>
+<br>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>email</th>
+      <th>name</th>
+      <th>phone</th>
+      <th>address</th>
+      <th>created at</th>
+      <th>action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |f|%>
+    <tr>
+      <td><%= f.id %></td>
+      <td><%= f.email %></td>
+      <td><%= f.name %></td>
+      <td><%= f.phone %></td>
+      <td><%= f.address %></td>
+      <td><%= f.created_at.to_date %></td>
+      <td>
+        <%= link_to("<i class='fa fa-pencil-alt'></i>".html_safe, edit_admins_user_path(f.id), class: "btn btn-circle btn-default btn-large") %>
+        <%= link_to("<i class='fa fa-trash-alt'></i>".html_safe, admins_user_path(f.id), class: "btn btn-circle btn-danger btn-large", data: {:confirm => 'Are you sure?'}, :method => :delete) %>
+        <%= link_to("<i class='fa fa-eye'></i>".html_safe, admins_user_path(f.id), class: "btn btn-circle btn-primary btn-large") %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @users, theme: 'twitter-bootstrap-4' %>

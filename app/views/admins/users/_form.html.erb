@@ -1,0 +1,9 @@
+<%= simple_form_for([:admins, @user]) do |f|%>
+	<%= f.input :name %>
+	<%= f.input :phone %>
+	<%= f.input :address %>
+	<%= f.input :cv %>
+	<%= f.input :email%>
+	<%= f.input :password%>
+	<%= f.submit "Save", class: 'btn btn-devise' %>
+<% end %>

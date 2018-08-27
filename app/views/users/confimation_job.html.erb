@@ -3,7 +3,7 @@
 		<p>Name: <%= @user.name %></p>
 		<p>Email: <%= @user.email%></p>
 
-		<%= simple_form_for(@user,url: update_cv_user_path, html: { method: :put }) do |f| %>
+		<%= simple_form_for(@user,url: update_cv_user_path(@user,@job), html: { method: :put }) do |f| %>
 	  <div class="form-group">
 	    <%= f.input :cv, label: "upload cv:"%>
 	  </div>

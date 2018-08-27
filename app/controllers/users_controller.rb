@@ -26,18 +26,25 @@ class UsersController < ApplicationController
 		if arr_job_ids.include? params[:format].to_i
 			arr_job_ids.delete(params[:format].to_i)
 			current_user.update(job_ids: arr_job_ids)
+			redirect_to request.referrer
 		else
 			arr_job_ids.push(params[:format].to_i)
 			current_user.update(job_ids: arr_job_ids)
 			ApplyJobMailer.send_mail_add_cv(current_user,Job.find(params[:format].to_i)).deliver_now
+			redirect_to confimation_job_user_path(current_user, Job.find(params[:format].to_i))
 		end
+	end
 
-		redirect_to request.referrer
+	def history_apply
+		@jobs_users = JobsUser.where("jobs_users.user_id = ?", current_user)
+		@jobs = current_user.jobs.page(params[:page]).per(20)
 	end
 
 	def update_cv
 		@user = User.find(params[:id])
 		if @user.update(param_cv)
+			ApplyJobMailer.done_apply_user(current_user,Job.find(params[:format].to_i)).deliver_now
+			ApplyJobMailer.mailer_admin(current_user,Job.find(params[:format].to_i)).deliver_now
 			redirect_to tks_page_path
 		else
 			render :confimation_job

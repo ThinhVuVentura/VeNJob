@@ -1,3 +1,4 @@
+
 <div class= "container-fluid">
 	<div class="home-page">
 		<div class="col-12">
@@ -6,17 +7,12 @@
 			<br>
 			<div class="category">
 				<div class = "row">
+
 					<% @categories.each do |a|%>
 						<%= link_to city_category_path(@city,a) do %>
-							<% if @category == a%>
-								<div class ="item-category active-category">
-									<%= a.title%>
-								</div>
-							<% else %>
-								<div class ="item-category">
-									<%= a.title%>
-								</div>
-							<% end %>
+							<div class ="item-category">
+								<%= a.title%>
+							</div>
 						<% end %>
 					<% end %>
 				</div>
@@ -37,7 +33,7 @@
 							   	<% else %>
 							   		<%= link_to "Favorite", favorite_user_user_path(f,f),html: { method: :put }, class: "btn btn-apply-item"%>
 							   	<% end %>
-							   		<%= link_to "Detail", job_path(f), class: "btn btn-show-item"%>
+							    	<%= link_to "Detail", job_path(f), class: "btn btn-show-item"%>
 							  </div>
 						  </div>
 						</div>

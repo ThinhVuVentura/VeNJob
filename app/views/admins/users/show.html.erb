@@ -1,0 +1,9 @@
+<h2> Infomation User </h2>
+<br>
+<h5><b>User name:</b> <i><%= @user.name%></i></h5>
+<h5><b>Phone:</b> <i><%= @user.phone%> $</i></h5>
+<h5><b>Address:</b> <i><%= @user.address%></i></h5>
+<h5><b>Email:</b> <i><%= @user.email%></i></h5>
+<h5><b>cv:</b> <i><%=link_to "cv", @user.cv.url%></i></h5>
+<h5><b>Updatedat:</b> <i><%= @user.updated_at.to_date%></i></h5>
+<h5><b>Created at:</b> <i><%= @user.created_at.to_date%></i></h5>

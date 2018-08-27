@@ -1,45 +1,17 @@
-<div class= "container-fluid">
+<div class= "container-fluid mt-4">
 	<div class="home-page">
 		<div class="col-12">
-			<br>
-			<h3> <%= @jobs.count%> jobs for you </h3>
-			<br>
-			<div class="category">
-				<div class = "row">
-
-					<% @categories.each do |a|%>
-						<%= link_to category_path(a) do %>
-							<div class ="item-category">
-								<%= a.title%>
-							</div>
-						<% end %>
+			<%= form_tag(root_path, method: :get) do %>
+        <%= select_tag :city_list, options_for_select(City.city_lists.keys.map {|role| [role.titleize,role]}, selected: params[:city_list]), {class: "form-control select2", onchange: "this.form.submit()", prompt: "city list"} %>
+      <% end %>
+      <div class="mt-2">
+      	<div class="row">
+					<% @cities.each do |f| %>
+						<div class ="item-category col-2">
+							<%=link_to f.name, city_path(f)%>
+						</div>
 					<% end %>
 				</div>
-			</div>
-			<%= paginate @jobs, theme: 'twitter-bootstrap-4' %>
-			<div class="row ">
-				<% @jobs.each do |f| %>
-					<div class="col-lg-4 col-md-6 col-12 item-jobs">
-						<div class="info-item-jobs">
-							<%= image_tag "#{f&.photo}", class: "image-photo-jobs"%>
-						  <div class="overlay">
-						    <div class="text">Title: <%= f.name %></div>
-						    <div class="text">Salary: <%= f.price %></div>
-						    <div class="text">Category: <%= f.category.title %></div>
-							   <div class="btn-group">
-							   	<% if  current_user&.favorited? f%>
-							   		<%= link_to "Unfavorite",favorite_user_user_path(f, f),html: { method: :put }, class: "btn btn-apply-item"%>
-							   	<% else %>
-							   		<%= link_to "Favorite", favorite_user_user_path(f,f),html: { method: :put }, class: "btn btn-apply-item"%>
-							   	<% end %>
-							    	<%= link_to "Detail", job_path(f), class: "btn btn-show-item"%>
-							  </div>
-						  </div>
-						</div>
-					</div>
-				<% end %>
-				<br>
-				<%= paginate @jobs, theme: 'twitter-bootstrap-4' %>
 			</div>
 		</div>
 	</div>

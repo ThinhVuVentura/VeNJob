@@ -11,7 +11,9 @@ module DataUser
 				if User.where("users.email = ?",email).count == 1
 					User.find_by(email: email).update!(name: name, password: password)
 				else
-					User.create!(email: email, name: name, password: password )
+					a = User.new(email: email, name: name, password: password )
+					a.skip_confirmation!
+					a.save
 				end
 			end
 		end

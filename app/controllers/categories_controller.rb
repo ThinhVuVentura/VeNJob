@@ -1,8 +1,9 @@
 class CategoriesController < ApplicationController
 
 	def show
+		@city = City.find(params[:city_id])
 		@category = Category.find(params[:id])
-		@categories = Category.all.order(position: :ASC)
+		@categories = @city.categories.order(position: :ASC)
 		@jobs = @category.jobs.page(params[:page]).per(12)
 	end
 
