@@ -1,5 +1,16 @@
 <div class="col-12 mt-4">
-  <div class="row">
+  <div class="row col-6 offset-2">
+    <h2> Infomation User </h2>
+  </div>
+  <div class=" col-6 offset-2">
+    <p><b>User name:</b> <i><%= @user.name%></i></p>
+    <p><b>Phone:</b> <i><%= @user.phone%> $</i></p>
+    <p><b>Address:</b> <i><%= @user.address%></i></p>
+    <p><b>Email:</b> <i><%= @user.email%></i></p>
+    <p><b>cv:</b> <i><%=link_to "cv", @user.cv.url%></i></p>
+    <%= link_to "edit profile", edit_user_path(current_user), class: "btn btn-devise"%>
+  </div>
+  <div class="row mt-4">
     <div class="col-6 offset-2">
       <h2>History Apply</h2>
     </div>
@@ -26,7 +37,7 @@
       <td><%= f.industry.title %></td>
       <td><%= f.price %></td>
       <td>
-          <%= @jobs_users.find_by(job_id: f.id).created_at.to_date%>
+          <%= @jobs_users&.find_by(job_id: f.id)&.created_at&.to_date%>
       </td>
     </tr>
     <% end %>

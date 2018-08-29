@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
 	def update
 		if current_user.update(param_user)
-  		redirect_to edit_user_path
+  		redirect_to my_page_user_path
   	else
   		render :edit
   	end
@@ -30,7 +30,6 @@ class UsersController < ApplicationController
 		else
 			arr_job_ids.push(params[:format].to_i)
 			current_user.update(job_ids: arr_job_ids)
-			ApplyJobMailer.send_mail_add_cv(current_user,Job.find(params[:format].to_i)).deliver_now
 			redirect_to confimation_job_user_path(current_user, Job.find(params[:format].to_i))
 		end
 	end
@@ -40,15 +39,17 @@ class UsersController < ApplicationController
 		@jobs = current_user.jobs.page(params[:page]).per(20)
 	end
 
+	def my_page
+		@user = User.find(params[:id])
+		@jobs_users = JobsUser.where("jobs_users.user_id = ?", current_user)
+		@jobs = current_user.jobs.page(params[:page]).per(20)
+	end
+
 	def update_cv
 		@user = User.find(params[:id])
-		if @user.update(param_cv)
-			ApplyJobMailer.done_apply_user(current_user,Job.find(params[:format].to_i)).deliver_now
-			ApplyJobMailer.mailer_admin(current_user,Job.find(params[:format].to_i)).deliver_now
-			redirect_to tks_page_path
-		else
-			render :confimation_job
-		end
+		ApplyJobMailer.done_apply_user(current_user,Job.find(params[:format].to_i)).deliver_now
+		ApplyJobMailer.mailer_admin(current_user,Job.find(params[:format].to_i)).deliver_now
+		redirect_to tks_page_path
 	end
 
 	def confimation_job
@@ -64,7 +65,7 @@ class UsersController < ApplicationController
 		if current_user.valid_password?(params[:user][:old_password])
       if current_user.update_attributes(param_password)
       else
-        render :edit
+        redirect_to my_page_user_path
       end
     else
     	render :edit
@@ -78,10 +79,6 @@ class UsersController < ApplicationController
   	end
     def param_password
       params.require(:user).permit(:password,:password_confirmation)
-    end
-
-    def param_cv
-    	params.require(:user).permit(:cv)
     end
 
 end

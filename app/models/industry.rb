@@ -1,4 +1,4 @@
-class Category < ApplicationRecord
+class Industry < ApplicationRecord
 	has_many :jobs, :dependent => :delete_all
 	belongs_to :city
 	validates :title, :position, presence: true, uniqueness: true

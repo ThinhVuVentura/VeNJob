@@ -4,4 +4,8 @@ class JobsController < ApplicationController
 		@job = Job.find(params[:id])
 		@users = @job.users
 	end
+
+	def index
+		@jobs = Job.all.page(params[:page]).per(20)
+	end
 end

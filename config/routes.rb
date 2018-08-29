@@ -28,13 +28,14 @@ get "search", to: "home#search"
       get "confimation_job"
       put "update_cv"
       get "history_apply"
+      get "my_page"
     end
   end
 
  	resources :home, only:[:index]
- 	resources :jobs, only:[:show]
+ 	resources :jobs, only:[:show, :index]
   resources :cities, only:[:show] do
-    resources :categories, only:[:show]
+    resources :industries, only:[:show]
   end
 
 #-------------------------------
@@ -47,7 +48,7 @@ get "search", to: "home#search"
       collection {post :import }
     end
     resources :cities
- 		resources :categories
+ 		resources :industries
     root "jobs#index"
  	end
 

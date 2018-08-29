@@ -1,9 +1,9 @@
-class Admins::CategoriesController < Admins::BaseController
+class Admins::IndustriesController < Admins::BaseController
 
 	before_action :set_category , only: [:show, :destroy, :edit, :update]
 
 	def index
-		@categories = Category.all.page(params[:page]).per(20)
+		@categories = Industry.all.page(params[:page]).per(20)
 	end
 
 	def show
@@ -11,9 +11,9 @@ class Admins::CategoriesController < Admins::BaseController
 	end
 
 	def create
-		@category = Category.new(params_category)
+		@category = Industry.new(params_category)
 		if @category.save
-			redirect_to admins_category_path(@category)
+			redirect_to admins_industry_path(@category)
 		else
 			render :new,  errors: @category.errors.full_messages.join(", ")
 		end
@@ -21,7 +21,7 @@ class Admins::CategoriesController < Admins::BaseController
 
 	def update
 		if @category.update(params_category)
-			redirect_to admins_category_path(@category)
+			redirect_to admins_industry_path(@category)
 		else
 			render :edit,  errors: @category.errors.full_messages.join(", ")
 		end
@@ -29,23 +29,23 @@ class Admins::CategoriesController < Admins::BaseController
 
 	def destroy
 		if @category.destroy
-			redirect_to admins_categories_path
+			redirect_to admins_industries_path
 		else
 			render :index,  errors: @category.errors.full_messages.join(", ")
 		end
 	end
 
 	def new
-		@category = Category.new()
+		@category = Industry.new()
 	end
 
 	private
 
 		def set_category
-			@category = Category.find(params[:id])
+			@category = Industry.find(params[:id])
 		end
 
 		def params_category
-			params.require(:category).permit(:title, :position, :city_id)
+			params.require(:industry).permit(:title, :position, :city_id)
 		end
 end

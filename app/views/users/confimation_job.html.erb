@@ -2,26 +2,17 @@
 		<p> Apply <%= @job.name%> </p>
 		<p>Name: <%= @user.name %></p>
 		<p>Email: <%= @user.email%></p>
-
+		<p>cv: <%= link_to "file", @user.cv.url if @user.cv.url.present? %>
 		<%= simple_form_for(@user,url: update_cv_user_path(@user,@job), html: { method: :put }) do |f| %>
 	  <div class="form-group">
-	    <%= f.input :cv, label: "upload cv:"%>
 	  </div>
 	  <div class="form-group">
-	  	<button class='btn btn-devise' onclick="IsEmpty();" type="button">send cv for company </button>
+	  	<%if @user.cv.url.present? %>
+	  		<%= f.submit "confirmation job", class: "btn btn-devise"%>
+	  		<%= link_to "edit profile", edit_user_path(current_user), class: "btn btn-devise"%>
+	  	<% else %>
+		  	<%= link_to "update profile", edit_user_path(current_user), class: "btn btn-devise"%>
+	  	<% end %>
 	  </div>
 	<% end %>
 </div>
-
-<script language="Javascript">
-  function IsEmpty(){
-      if($("#user_cv").val() == "")
-      {
-          alert("cv can be blank!");
-      }
-      else{
-      	$('form').submit();
-      }
-      return;
-  }
-</script>

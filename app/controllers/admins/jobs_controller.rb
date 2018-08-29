@@ -42,7 +42,7 @@ class Admins::JobsController < Admins::BaseController
 		end
 
 		def params_job
-			params.require(:job).permit(:name, :description, :price, :photo, :category_id)
+			params.require(:job).permit(:name, :description, :price, :photo, :industry_id, :company)
 		end
 
 end
