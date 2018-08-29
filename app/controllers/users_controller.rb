@@ -28,8 +28,7 @@ class UsersController < ApplicationController
 			current_user.update(job_ids: arr_job_ids)
 			redirect_to request.referrer
 		else
-			arr_job_ids.push(params[:format].to_i)
-			current_user.update(job_ids: arr_job_ids)
+
 			redirect_to confimation_job_user_path(current_user, Job.find(params[:format].to_i))
 		end
 	end
@@ -55,6 +54,9 @@ class UsersController < ApplicationController
 	def confimation_job
 		@job = Job.find(params[:format].to_i)
 		@user = User.find(params[:id])
+		arr_job_ids = @user.job_ids
+		arr_job_ids.push(@job.id)
+		@user.update(job_ids: arr_job_ids)
 	end
 
 	def show
@@ -75,7 +77,7 @@ class UsersController < ApplicationController
 	private
 
 		def param_user
-  		params.require(:user).permit(:name, :phone, :address)
+  		params.require(:user).permit(:name, :phone, :address, :cv)
   	end
     def param_password
       params.require(:user).permit(:password,:password_confirmation)
