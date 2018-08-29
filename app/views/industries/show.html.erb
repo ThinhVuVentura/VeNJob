@@ -6,9 +6,9 @@
 			<br>
 			<div class="category">
 				<div class = "row">
-					<% @categories.each do |a|%>
-						<%= link_to city_category_path(@city,a) do %>
-							<% if @category == a%>
+					<% @industries.each do |a|%>
+						<%= link_to city_industry_path(@city,a) do %>
+							<% if @industry == a%>
 								<div class ="item-category active-category">
 									<%= a.title%>
 								</div>

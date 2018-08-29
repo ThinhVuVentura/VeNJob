@@ -1,6 +1,5 @@
 <%= simple_form_for([:admins, @category]) do |f|%>
 	<%= f.input :title %>
 	<%= f.input :city_id,  collection: City.all.map { |c| [c.name, c.id]}, input_html: {class: "select2"} ,require:'true'%>
-	<%= f.input :position %>
 	<%= f.submit "Save", class: 'btn btn-devise' %>
 <% end %>

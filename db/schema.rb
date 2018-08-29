@@ -50,22 +50,21 @@ ActiveRecord::Schema.define(version: 2018_08_24_065634) do
 
   create_table "industries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
-    t.integer "position", default: 1000
-    t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_industries_on_city_id"
   end
 
   create_table "jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.float "price"
+    t.text "name"
+    t.string "price"
     t.string "photo"
     t.text "description"
     t.string "company"
     t.bigint "industry_id"
+    t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_jobs_on_city_id"
     t.index ["industry_id"], name: "index_jobs_on_industry_id"
   end
 

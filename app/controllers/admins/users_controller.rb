@@ -2,12 +2,6 @@ class Admins::UsersController < Admins::BaseController
 
 	before_action :set_user, only:[:show, :edit, :update, :destroy]
 
-	def import
-		 DataUser::ImportData.new().import(params[:file])
-    # Randd::Field.create(params[:randd_field]['file'])
-    redirect_to action: "index", notice: "Data imported"
-	end
-
 	def index
 		@users = User.all.page(params[:page]).per(20)
 	end
