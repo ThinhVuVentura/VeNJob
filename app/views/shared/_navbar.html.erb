@@ -7,8 +7,10 @@
   			<% end %>
   		</div>
 	    <div class="search-navbar input-group col-9">
-	      <input type="text" class="form-control input-search" placeholder="search-jobs">
-	      <button class="btn btn-search-navbar" href="#">Search</button>
+	      <%= form_tag(jobs_path, method: :get) do %>
+          <%= text_field_tag :key, params[:key], class: "form-control input-search", placeholder: "Search by salary" %>
+          <%= submit_tag "search", class: "btn btn-search-navbar"%>
+        <% end %>
 	    </div>
 		</div>
   </form>

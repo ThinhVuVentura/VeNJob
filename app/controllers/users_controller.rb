@@ -35,13 +35,13 @@ class UsersController < ApplicationController
 
 	def history_apply
 		@jobs_users = JobsUser.where("jobs_users.user_id = ?", current_user)
-		@jobs = current_user.jobs.page(params[:page]).per(20)
+		@jobs = current_user.jobs.page(params[:page]).per(12)
 	end
 
 	def my_page
 		@user = User.find(params[:id])
 		@jobs_users = JobsUser.where("jobs_users.user_id = ?", current_user)
-		@jobs = current_user.jobs.page(params[:page]).per(20)
+		@jobs = current_user.jobs.page(params[:page]).per(12)
 	end
 
 	def update_cv

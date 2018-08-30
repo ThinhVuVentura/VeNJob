@@ -2,6 +2,9 @@
 require "zip"
 require 'csv'
 require "net/ftp"
+require 'net/http'
+require 'rubygems'
+require 'rsolr'
 module DataJob
 	class ImportData
 

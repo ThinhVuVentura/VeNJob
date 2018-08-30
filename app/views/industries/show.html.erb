@@ -13,9 +13,11 @@
 									<%= a.title%>
 								</div>
 							<% else %>
-								<div class ="item-category">
-									<%= a.title%>
-								</div>
+								<% if @city.jobs.where("jobs.industry_id = ?", a.id).count > 0 %>
+									<div class ="item-category">
+										<%= a.title%>
+									</div>
+								<% end %>
 							<% end %>
 						<% end %>
 					<% end %>

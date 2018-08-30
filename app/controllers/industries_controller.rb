@@ -4,7 +4,7 @@ class IndustriesController < ApplicationController
 		@city = City.find(params[:city_id])
 		@industry = Industry.find(params[:id])
 		@industries = Industry.all
-		@jobs = @city.jobs.where("jobs.industry_id = ?", @industry.id).page(params[:page]).per(20)
+		@jobs = @city.jobs.where("jobs.industry_id = ?", @industry.id).page(params[:page]).per(12)
 	end
 
 end

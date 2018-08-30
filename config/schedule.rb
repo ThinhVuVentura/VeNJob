@@ -21,6 +21,6 @@
 # every 1.day, at: '8:00 am' do
 #   runner "MyModel.task_to_run_at_four_thirty_in_the_morning"
 # end
-every 30.minute do
-	runner DataJob::ImportData.new().import_job
+every 1.day, at: '8:30 am' do
+	rake "import_data"
 end
