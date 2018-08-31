@@ -11,5 +11,8 @@ class JobsController < ApplicationController
 
 	def index
 		@jobs = Job.search(params)
+		@jobs = Kaminari.paginate_array(@jobs, total_count: @jobs.count)
+                                    .page(params[:page])
+                                    .per(12)
 	end
 end
