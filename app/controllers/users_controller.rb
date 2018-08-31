@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
 
 	before_action :authenticate_user!
+	before_action :params_search
+
+  def params_search
+    if params[:key].present?
+      redirect_to jobs_path + "?utf8=✓&key=#{params[:key]}&commit=search"
+    end
+  end
 
 	def update
 		if current_user.update(param_user)

@@ -47,13 +47,8 @@ module DataJob
 				if Industry.where("industries.title = ?",industry).count != 1
 					Industry.create!(title: industry)
 				end
-
-				if Job.where("jobs.name = ? AND jobs.company = ?",jobtitle, company).count == 1 && Job.joins(:city).where("cities.name = ?", city)
-					Job.update(name: jobtitle, price: price , description: description, company: company)
-				else
-					Job.create!(name: jobtitle, price: price , description: description, company: company, industry_id: Industry.find_by(title: industry).id , city_id: City.find_by(name: city).id)
-				end
-			 end
+				Job.create!(name: jobtitle, price: price , description: description, company: company, industry_id: Industry.find_by(title: industry).id , city_id: City.find_by(name: city).id)
+			end
 		end
 	end
 end
