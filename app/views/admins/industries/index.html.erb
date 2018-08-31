@@ -20,7 +20,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @categories.each do |f|%>
+    <% @industries.each do |f|%>
     <tr>
       <td><%= f.id %></td>
       <td><%= f.title %></td>
@@ -35,5 +35,5 @@
     <% end %>
   </tbody>
 </table>
-<%= paginate @categories, theme: 'twitter-bootstrap-4' %>
+<%= paginate @industries, theme: 'twitter-bootstrap-4' %>
 

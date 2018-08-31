@@ -13,6 +13,7 @@ class IndustriesController < ApplicationController
 		@industry = Industry.find(params[:id])
 		@industries = Industry.all
 		@jobs = @city.jobs.where("jobs.industry_id = ?", @industry.id).page(params[:page]).per(12)
+		@total = @city.jobs.where("jobs.industry_id = ?", @industry.id).count
 	end
 
 end

@@ -3,7 +3,7 @@
 	<div class="home-page">
 		<div class="col-12">
 			<br>
-			<h3> <%= @jobs.count%> jobs for you </h3>
+			<h3> <%= @total %> jobs for you </h3>
 			<br>
 			<div class="category">
 				<div class = "row">
@@ -43,8 +43,8 @@
 					</div>
 				<% end %>
 				<br>
+				</div>
 				<%= paginate @jobs, theme: 'twitter-bootstrap-4' %>
-			</div>
 			</div>
 		</div>
 	</div>

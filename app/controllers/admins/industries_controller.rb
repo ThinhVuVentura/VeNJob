@@ -1,51 +1,51 @@
 class Admins::IndustriesController < Admins::BaseController
 
-	before_action :set_category , only: [:show, :destroy, :edit, :update]
+  before_action :set_category , only: [:show, :destroy, :edit, :update]
 
-	def index
-		@categories = Industry.all.page(params[:page]).per(20)
-	end
+  def index
+    @industries = Industry.page(params[:page]).per(20)
+  end
 
-	def show
-		@jobs = @category.jobs.page(params[:page]).per(10)
-	end
+  def show
+    @jobs = @industry.jobs.page(params[:page]).per(10)
+  end
 
-	def create
-		@category = Industry.new(params_category)
-		if @category.save
-			redirect_to admins_industry_path(@category)
-		else
-			render :new,  errors: @category.errors.full_messages.join(", ")
-		end
-	end
+  def create
+    @industry = Industry.new(params_industry)
+    if @industry.save
+      redirect_to admins_industry_path(@industry)
+    else
+      render :new,  errors: @industry.errors.full_messages.join(", ")
+    end
+  end
 
-	def update
-		if @category.update(params_category)
-			redirect_to admins_industry_path(@category)
-		else
-			render :edit,  errors: @category.errors.full_messages.join(", ")
-		end
-	end
+  def update
+    if @industry.update(params_industry)
+      redirect_to admins_industry_path(@industry)
+    else
+      render :edit,  errors: @industry.errors.full_messages.join(", ")
+    end
+  end
 
-	def destroy
-		if @category.destroy
-			redirect_to admins_industries_path
-		else
-			render :index,  errors: @category.errors.full_messages.join(", ")
-		end
-	end
+  def destroy
+    if @industry.destroy
+      redirect_to admins_industries_path
+    else
+      render :index,  errors: @industry.errors.full_messages.join(", ")
+    end
+  end
 
-	def new
-		@category = Industry.new()
-	end
+  def new
+    @industry = Industry.new()
+  end
 
-	private
+  private
 
-		def set_category
-			@category = Industry.find(params[:id])
-		end
+    def set_category
+      @industry = Industry.find(params[:id])
+    end
 
-		def params_category
-			params.require(:industry).permit(:title, :position, :city_id)
-		end
+    def params_industry
+      params.require(:industry).permit(:title, :position, :city_id)
+    end
 end

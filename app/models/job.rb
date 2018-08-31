@@ -22,21 +22,21 @@ class Job < ApplicationRecord
 	end
 
 	private
-	def updata_solr
-		solr = Solr::Base.solr_connection
-		solr.add :id => Job.last.id, :salary => self.price.downcase.gsub(/^\(+|\)+$/, '').gsub(/-/, ' ').gsub('.', '') if self.price.present?
-		solr.commit
-	end
+		def updata_solr
+			solr = Solr::Base.solr_connection
+			solr.add :id => Job.last.id, :salary => self.price.downcase.gsub(/^\(+|\)+$/, '').gsub(/-/, ' ').gsub('.', '') if self.price.present?
+			solr.commit
+		end
 
-	def update_data_solr
-		solr = Solr::Base.solr_connection
-		solr.delete_by_id [self.id]
-		solr.add :id => self.id, :salary => self.price.downcase.gsub(/^\(+|\)+$/, '').gsub(/-/, ' ').gsub('.', '') if self.price.present?
-		solr.commit
-	end
+		def update_data_solr
+			solr = Solr::Base.solr_connection
+			solr.delete_by_id [self.id]
+			solr.add :id => self.id, :salary => self.price.downcase.gsub(/^\(+|\)+$/, '').gsub(/-/, ' ').gsub('.', '') if self.price.present?
+			solr.commit
+		end
 
-	def del_data_solr
-		solr = Solr::Base.solr_connection
-		solr.delete_by_id [self.id]
-	end
+		def del_data_solr
+			solr = Solr::Base.solr_connection
+			solr.delete_by_id [self.id]
+		end
 end

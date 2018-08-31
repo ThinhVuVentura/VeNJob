@@ -12,5 +12,6 @@ class CitiesController< ApplicationController
 		@city = City.find(params[:id])
 		@industries = Industry.all
 		@jobs = @city.jobs.page(params[:page]).per(12)
+		@total = @city.jobs.count
 	end
 end
