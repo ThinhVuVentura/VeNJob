@@ -17,9 +17,9 @@ Rails.application.routes.draw do
   resources :users, only:[:show, :edit, :update] do
     member do
       put "update_password"
-      get "favorite_user"
-      get "apply_job"
-      get "confimation_job"
+      get "favorite_user/:id", to: 'users#favorite_user', as: :favorite_user
+      get "apply_job/:id", to: 'users#apply_job', as: :apply_job
+      get "confimation_job/:id", to: 'users#confimation_job',  as: :confimation_job
       put "update_cv"
       get "history_apply"
       get "my_page"

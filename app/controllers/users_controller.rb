@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 	end
 
 	def favorite_user
-		job = Job.find(params[:format].to_i)
+		job = Job.find(params[:id])
 		if current_user.favorited? job
 			current_user.remove_favorite job
 			redirect_to request.referrer
@@ -30,13 +30,12 @@ class UsersController < ApplicationController
 
 	def apply_job
 		arr_job_ids = current_user.job_ids
-		if arr_job_ids.include? params[:format].to_i
-			arr_job_ids.delete(params[:format].to_i)
+		if arr_job_ids.include? params[:id]
+			arr_job_ids.delete(params[:id])
 			current_user.update(job_ids: arr_job_ids)
 			redirect_to request.referrer
 		else
-
-			redirect_to confimation_job_user_path(current_user, Job.find(params[:format].to_i))
+			redirect_to confimation_job_user_path(current_user, Job.find(params[:id]))
 		end
 	end
 
@@ -53,14 +52,14 @@ class UsersController < ApplicationController
 
 	def update_cv
 		@user = User.find(params[:id])
-		ApplyJobMailer.done_apply_user(current_user,Job.find(params[:format].to_i)).deliver_now
-		ApplyJobMailer.mailer_admin(current_user,Job.find(params[:format].to_i)).deliver_now
+		ApplyJobMailer.done_apply_user(current_user,Job.find(params[:id])).deliver_now
+		ApplyJobMailer.mailer_admin(current_user,Job.find(params[:id])).deliver_now
 		redirect_to tks_page_path
 	end
 
 	def confimation_job
-		@job = Job.find(params[:format].to_i)
-		@user = User.find(params[:id])
+		@job = Job.find(params[:id])
+		@user = User.find(current_user.id)
 		arr_job_ids = @user.job_ids
 		arr_job_ids.push(@job.id)
 		@user.update(job_ids: arr_job_ids)
