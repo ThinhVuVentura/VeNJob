@@ -1,5 +1,5 @@
 class City < ApplicationRecord
-has_many :categories, :dependent => :delete_all
+has_many :jobs, :dependent => :delete_all
 enum city_list:{"viet nam":0, "international":1 }
 
 	def self.filter(args={})

@@ -3,16 +3,18 @@
 	<div class="home-page">
 		<div class="col-12">
 			<br>
-			<h3> <%= @jobs.count%> jobs for you </h3>
+			<h3> <%= @total %> jobs for you </h3>
 			<br>
 			<div class="category">
 				<div class = "row">
 
-					<% @categories.each do |a|%>
-						<%= link_to city_category_path(@city,a) do %>
-							<div class ="item-category">
-								<%= a.title%>
-							</div>
+					<% @industries.each do |a|%>
+						<%= link_to city_industry_path(@city,a) do %>
+							<% if @city.jobs.where("jobs.industry_id = ?", a.id).count > 0 %>
+								<div class ="item-category">
+									<%= a.title%>
+								</div>
+							<% end %>
 						<% end %>
 					<% end %>
 				</div>
@@ -26,20 +28,22 @@
 						  <div class="overlay">
 						    <div class="text">Title: <%= f.name %></div>
 						    <div class="text">Salary: <%= f.price %></div>
-						    <div class="text">Category: <%= f.category.title %></div>
+						    <div class="text">Industry: <%= f.industry.title %></div>
+						    <div class="text">company: <%= f.company %></div>
 							   <div class="btn-group">
 							   	<% if  current_user&.favorited? f%>
 							   		<%= link_to "Unfavorite",favorite_user_user_path(f, f),html: { method: :put }, class: "btn btn-apply-item"%>
 							   	<% else %>
 							   		<%= link_to "Favorite", favorite_user_user_path(f,f),html: { method: :put }, class: "btn btn-apply-item"%>
 							   	<% end %>
-							    	<%= link_to "Detail", job_path(f), class: "btn btn-show-item"%>
+							   		<%= link_to "Detail", job_path(f), class: "btn btn-show-item"%>
 							  </div>
 						  </div>
 						</div>
 					</div>
 				<% end %>
 				<br>
+				</div>
 				<%= paginate @jobs, theme: 'twitter-bootstrap-4' %>
 			</div>
 		</div>

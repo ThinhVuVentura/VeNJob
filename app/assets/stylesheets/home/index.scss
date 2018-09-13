@@ -24,9 +24,12 @@
 			  padding-top: 80px;
 			}
 			.text {
-				width: 100%;
+				max-width: 100%;
 			  color: white;
 			  font-size: 20px;
+			  white-space: nowrap;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
 			}
 		}
 		.info-item-jobs:hover .overlay {

@@ -3,12 +3,6 @@
     <div class="col-3">
       <h2>Table User</h2>
     </div>
-    <div class="col-6">
-			<%= form_tag import_admins_users_path, method: :post, multipart: true do %>
-			  <%= file_field_tag :file %>
-			  <%= submit_tag "Import CSV" %>
-			<% end %>
-		</div>
     <div class="col-3 text-right">
       <%= link_to "Create new", new_admins_user_path, class: "btn btn-devise"%>
     </div>

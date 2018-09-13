@@ -24,15 +24,6 @@ ActiveRecord::Schema.define(version: 2018_08_24_065634) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title"
-    t.integer "position", default: 1000
-    t.bigint "city_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_categories_on_city_id"
-  end
-
   create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.integer "city_list", default: 0
@@ -57,15 +48,24 @@ ActiveRecord::Schema.define(version: 2018_08_24_065634) do
     t.index ["scope"], name: "index_favorites_on_scope"
   end
 
-  create_table "jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.float "price"
-    t.string "photo"
-    t.text "description"
-    t.bigint "category_id"
+  create_table "industries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_jobs_on_category_id"
+  end
+
+  create_table "jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "name"
+    t.string "price"
+    t.string "photo"
+    t.text "description"
+    t.string "company"
+    t.bigint "industry_id"
+    t.bigint "city_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_jobs_on_city_id"
+    t.index ["industry_id"], name: "index_jobs_on_industry_id"
   end
 
   create_table "jobs_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

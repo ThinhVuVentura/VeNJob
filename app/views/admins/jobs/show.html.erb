@@ -2,7 +2,9 @@
 <br>
 <h5><b>Title Job:</b> <i><%= @job.name%></i></h5>
 <h5><b>Salary:</b> <i><%= @job.price%> $</i></h5>
-<h5><b>Category:</b> <i><%= @job.category.title%></i></h5>
+<h5><b>Company:</b> <i><%= @job.company%></i></h5>
+<h5><b>Industry:</b> <i><%= @job.industry.title%></i></h5>
+<h5><b>City:</b> <i><%= @job.city.name%></i></h5>
 <h5><b>Description:</b> <i><%= @job.description%></i></h5>
 <h5><b>Updatedat:</b> <i><%= @job.updated_at.to_date%></i></h5>
 <h5><b>Created at:</b> <i><%= @job.created_at.to_date%></i></h5>

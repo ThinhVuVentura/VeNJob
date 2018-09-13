@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
 
 
-
-get "search", to: "home#search"
-
-
-
-
   devise_for :admins, controllers: {
         sessions: 'admins/sessions'
       }
@@ -23,18 +17,19 @@ get "search", to: "home#search"
   resources :users, only:[:show, :edit, :update] do
     member do
       put "update_password"
-      get "favorite_user"
-      get "apply_job"
-      get "confimation_job"
+      get "favorite_user/:id", to: 'users#favorite_user', as: :favorite_user
+      get "apply_job/:id", to: 'users#apply_job', as: :apply_job
+      get "confimation_job/:id", to: 'users#confimation_job',  as: :confimation_job
       put "update_cv"
       get "history_apply"
+      get "my_page"
     end
   end
 
  	resources :home, only:[:index]
- 	resources :jobs, only:[:show]
+ 	resources :jobs, only:[:show, :index]
   resources :cities, only:[:show] do
-    resources :categories, only:[:show]
+    resources :industries, only:[:show]
   end
 
 #-------------------------------
@@ -47,7 +42,7 @@ get "search", to: "home#search"
       collection {post :import }
     end
     resources :cities
- 		resources :categories
+ 		resources :industries
     root "jobs#index"
  	end
 

@@ -6,19 +6,19 @@ class DataProjectTest < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-  	create_table :categories do |f|
+  	create_table :industries do |f|
   		f.string :title
-  		f.integer :position, default: 1000
-      f.references :city
   		f.timestamps
   	end
 
-  	create_table :products do |f|
-  		f.string :name
-  		f.float :price
+  	create_table :jobs do |f|
+  		f.text :name
+  		f.string :price
   		f.string :photo
   		f.text :description
-  		f.references :category
+      f.string :company
+  		f.references :industry
+      f.references :city
   		f.timestamps
   	end
   end

@@ -15,7 +15,8 @@
       <th>ID</th>
       <th>Image</th>
       <th>Title Job</th>
-      <th>Category</th>
+      <th>Industry</th>
+      <th>City</th>
       <th>salary</th>
       <th> Action</th>
     </tr>
@@ -26,7 +27,8 @@
       <td><%= f.id %></td>
       <td><%= image_tag "#{f.photo}" if f.photo.present? %></td>
       <td><%= f.name %></td>
-      <td><%= f.category.title %></td>
+      <td><%= f.industry.title %></td>
+      <td><%= f.city.name%></td>
       <td><%= f.price %></td>
       <td>
         <%= link_to("<i class='fa fa-pencil-alt'></i>".html_safe, edit_admins_job_path(f.id), class: "btn btn-circle btn-default btn-large") %>

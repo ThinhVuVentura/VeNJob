@@ -2,22 +2,24 @@
 	<div class="details-job">
 		<h2> Infomation Job </h2>
 		<hr>
-		<h4><i><%= @job.name%></i></h4>
+		<h5><b>Title:</b> <i><%= @job.name%></i></h5>
 		<br>
 		<h5><b>Salary:</b> <i><%= @job.price%> $</i></h5>
-		<h5><b>Category:</b> <i><%= @job.category.title%></i></h5>
+		<h5><b>Company:</b> <i><%= @job.company%> $</i></h5>
+		<h5><b>Industry:</b> <i><%= @job.industry.title%></i></h5>
+		<h5><b>City:</b> <i><%= @job.city.name %></i></h5>
 		<h5><b>Description:</b> <i><%= @job.description%></i></h5>
 		<h5><b>Updatedat:</b> <i><%= @job.updated_at.to_date%></i></h5>
 		<h5><b>Created at:</b> <i><%= @job.created_at.to_date%></i></h5>
 		<% if @users.include? current_user %>
-			<%= link_to "Unapply", apply_job_user_path(@job, @job), class: "btn btn-devise" %>
+			<%= link_to "Unapply", apply_job_user_path(current_user.id, @job), class: "btn btn-devise" %>
 		<% else %>
-			<%= link_to "Apply", apply_job_user_path(@job,@job), class: "btn btn-devise" %>
+			<%= link_to "Apply", apply_job_user_path(current_user.id,@job), class: "btn btn-devise" %>
 		<% end %>
 		<% if  current_user&.favorited? @job%>
-   		<%= link_to "Unfavorite",favorite_user_user_path(@job, @job),html: { method: :put }, class: "btn btn-devise"%>
+   		<%= link_to "Unfavorite",favorite_user_user_path(current_user, @job),html: { method: :put }, class: "btn btn-devise"%>
    	<% else %>
-   		<%= link_to "Favorite", favorite_user_user_path(@job,@job),html: { method: :put }, class: "btn btn-devise"%>
+   		<%= link_to "Favorite", favorite_user_user_path(current_user,@job),html: { method: :put }, class: "btn btn-devise"%>
    	<% end %>
 		</div>
 	</div>

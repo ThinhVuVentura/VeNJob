@@ -1,8 +1,17 @@
 class CitiesController< ApplicationController
 
+	before_action :params_search
+
+  def params_search
+    if params[:key].present?
+      redirect_to jobs_path + "?utf8=✓&key=#{params[:key]}&commit=search"
+    end
+  end
+
 	def show
 		@city = City.find(params[:id])
-		@categories = @city.categories.order(position: :ASC)
-		@jobs = Job.all.page(params[:page]).per(12)
+		@industries = Industry.all
+		@jobs = @city.jobs.page(params[:page]).per(12)
+		@total = @city.jobs.count
 	end
 end

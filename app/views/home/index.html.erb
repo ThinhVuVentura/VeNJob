@@ -13,6 +13,32 @@
 					<% end %>
 				</div>
 			</div>
+			<div class="mt-2">
+				<div class="row ">
+				<% @jobs.each do |f| %>
+					<div class="col-lg-4 col-md-6 col-12 item-jobs">
+						<div class="info-item-jobs">
+							<%= image_tag "#{f&.photo}", class: "image-photo-jobs"%>
+						  <div class="overlay">
+						    <div class="text">Title: <%= f.name %></div>
+						    <div class="text">Salary: <%= f.price %></div>
+						    <div class="text">Industry: <%= f.industry.title %></div>
+						    <div class="text">company: <%= f.company %></div>
+							   <div class="btn-group">
+							   	<% if  current_user&.favorited? f%>
+							   		<%= link_to "Unfavorite",favorite_user_user_path(current_user.id, f.id),html: { method: :put }, class: "btn btn-apply-item"%>
+							   	<% else %>
+							   		<%= link_to "Favorite", favorite_user_user_path(current_user.id,f.id),html: { method: :put }, class: "btn btn-apply-item"%>
+							   	<% end %>
+							   		<%= link_to "Detail", job_path(f.id), class: "btn btn-show-item"%>
+							  </div>
+						  </div>
+						</div>
+					</div>
+				<% end %>
+				<br>
+			</div>
+			<%= link_to "list all jobs", jobs_path , class: "btn btn-devise"%>
 		</div>
 	</div>
 </div>
